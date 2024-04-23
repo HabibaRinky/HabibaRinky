@@ -1,0 +1,26 @@
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+public class SimpleServer {
+
+    public static void main(String[] args) throws IOException {
+        int port = 8080;
+        ServerSocket serverSocket = new ServerSocket(port);
+        System.out.println("Server started. Listening on Port " + port);
+
+        while (true) {
+            try (Socket clientSocket = serverSocket.accept();
+                 OutputStream out = clientSocket.getOutputStream();
+                 PrintWriter writer = new PrintWriter(out, true)) {
+
+                // Send a welcome message to the client
+                writer.println("Hello, client! You are connected to the server.");
+            } catch (IOException e) {
+                System.err.println("I/O error: " + e.getMessage());
+            }
+        }
+    }
+}
