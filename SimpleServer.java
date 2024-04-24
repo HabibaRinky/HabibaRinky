@@ -7,7 +7,7 @@ import java.io.IOException;
 public class SimpleServer {
 
     public static void main(String[] args) {
-        int port = 8080;
+        int port = 3456;
         ServerSocket serverSocket = null;
         Socket clientSocket = null;
         PrintWriter writer = null;
